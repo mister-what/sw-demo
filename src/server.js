@@ -1,5 +1,8 @@
 const path = require("path");
-const { readFileSync } = require("fs");
+const {
+  readFileSync,
+  promises: { readFile },
+} = require("fs");
 const fastify = require("fastify")({
   logger: {
     prettyPrint: true,
@@ -148,13 +151,18 @@ fastify.register(
 
 fastify.register(require("fastify-static"), {
   root: path.resolve(__dirname, "../public"),
-  prefix: "/ui",
   list: true,
   send: {
-    index: true
-  }
+    index: true,
+  },
+});
+const indexFile = path.resolve(__dirname, "../public/index.html");
+fastify.get("/", {}, (request, reply) => {
+  return readFile(indexFile, "utf8").then((file) =>
+    reply.header("content-type", "text/html; charset=utf-8").send(file)
+  );
 });
 
 fastify.listen(3000, () => {
-  console.log(`Goto: https://localhost:3000/ui`);
+  console.log(`Open: https://localhost:3000/`);
 });

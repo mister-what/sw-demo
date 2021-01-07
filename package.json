@@ -1,0 +1,27 @@
+{
+  "name": "sw-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rollup -c",
+    "start": "node ./src/server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "fastify": "^3.9.2",
+    "fastify-static": "^3.3.1",
+    "find-my-way": "^3.0.5",
+    "localforage": "^1.9.0",
+    "pino-pretty": "^4.3.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^17.0.0",
+    "@rollup/plugin-node-resolve": "^11.0.1",
+    "prettier": "^2.2.1",
+    "rollup": "^2.36.1"
+  }
+}
